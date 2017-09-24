@@ -50,8 +50,6 @@ int main(int argc, char** argv)
     int gunType = 1;
 
     vector<EnemyBullet> enemyBulletVec;
-    
-      
 
     while(window.isOpen()) {
 
@@ -92,6 +90,7 @@ int main(int argc, char** argv)
         timer = timer + 1;
         // Generating the enemy, creating 10 of them all equal time apart. they will be set off in the direction of the
         // player at the moment it was created
+
         if(createEnemyNumber < 10) {
             if(timer % 50 == 0) {
                 Enemy enemy(window, playerSprite.getXpos(), playerSprite.getYpos(), spriteLogic.getTheta());
@@ -113,7 +112,7 @@ int main(int argc, char** argv)
         }
 
         window.clear(sf::Color::Black);
-           // Firing the bullet from the player sprite and changes gun when three satelittes have been killed
+        // Firing the bullet from the player sprite and changes gun when three satelittes have been killed
         if(isFiring == true) {
             if(newGunCount > 0 && newGunCount % 3 == 0) {
                 gunType = 2;
@@ -125,28 +124,30 @@ int main(int argc, char** argv)
             isFiring = false;
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-        
-        
-        
+
         //////////////////////////////////////////////////////////////////////////////////////////////
 
         // Collision detection for playerBullet and enemy
         counter = 0;
         for(auto iter = bulletVec.begin(); iter != bulletVec.end(); iter++) {
             counter2 = 0;
-            if(bulletVec.size() == 0){
-                    break;
-                }
+            //            if(bulletVec.size() == 0) {
+            //                break;
+            //            }
             for(auto iter4 = enemyVec.begin(); iter4 != enemyVec.end(); iter4++) {
-                if(bulletVec.size() == 0){
-                    break;
-                }
+                //                if(bulletVec.size() == 0) {
+                //                    break;
+                //                }
                 if(bulletVec[counter].bullet.getGlobalBounds().intersects(
                        enemyVec[counter2]._enemy.getGlobalBounds())) {
                     enemyVec[counter2].decreaseHealth(bulletVec[counter].getDamage());
-                    bulletVec.erase(bulletVec.begin() +counter);
-                    //cout << "collision" << endl;
+                    // bulletVec.erase(bulletVec.begin() + counter);
+                    bulletVec[counter].bullet.setFillColor(Color::Black);
+                   
+                    if(bulletVec[counter].getDamage() > 0) {
+                        cout << "collision" << endl;
+                    }
+                     bulletVec[counter].setDamage(0);
                 }
 
                 counter2++;
@@ -160,20 +161,21 @@ int main(int argc, char** argv)
         // Collision detection for playerBullet and enemy
         counter = 0;
         for(auto iter = bulletVec.begin(); iter != bulletVec.end(); iter++) {
-            if(bulletVec.size() == 0){
-                    break;
-                }
+            //            if(bulletVec.size() == 0){
+            //                    break;
+            //                }
             counter2 = 0;
             for(auto iter4 = satelliteVec.begin(); iter4 != satelliteVec.end(); iter4++) {
-                if(bulletVec.size() == 0){
-                    break;
-                }
+                //                if(bulletVec.size() == 0){
+                //                    break;
+                //                }
                 if(bulletVec[counter].bullet.getGlobalBounds().intersects(
                        satelliteVec[counter2].satellite.getGlobalBounds())) {
-                           
+
                     satelliteVec[counter2].decreaseHealth(bulletVec[counter].getDamage());
-                    bulletVec.erase(bulletVec.begin() +counter);
-                    
+                    //  bulletVec.erase(bulletVec.begin() +counter);
+                    bulletVec[counter].bullet.setFillColor(Color::Black);
+                    bulletVec[counter].setDamage(0);
                 }
 
                 counter2++;
@@ -182,8 +184,6 @@ int main(int argc, char** argv)
             counter++;
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-     
 
         // Deleting the bullet object once it reaches a small area at the centre of the window, if it is not at that
         // point then it will just draw the bullet and move it a little bit
@@ -195,9 +195,9 @@ int main(int argc, char** argv)
                 (bulletVec[i].getYPosition() < ((window.getSize().y / 2) + 20))) {
                 bulletVec.erase(bulletVec.begin() + i);
             }
-            
+
             bulletVec[i].draw(window);
-            
+
             bulletVec[i].fire(window);
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
