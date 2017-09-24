@@ -12,6 +12,7 @@ PlayerPresentation::PlayerPresentation(int xWindow, int yWindow)
     _xOrigin = _xPos;
     _yOrigin = (yWindow / 2); //-40
                               //_yOrigin = _yPos;
+                              
 
     if(!_playerSpaceshipTexture.loadFromFile("player.PNG")) {
         std::cerr << "Error Loading Player Texture";
@@ -20,6 +21,7 @@ PlayerPresentation::PlayerPresentation(int xWindow, int yWindow)
     _Player.setTexture(_playerSpaceshipTexture);
     _Player.setScale(Vector2f(0.1, 0.1));
     _Player.setPosition(_xPos, _yPos);
+    _Player.setOrigin(23,0);
 }
 
 void PlayerPresentation::draw(RenderWindow& window)
@@ -63,4 +65,13 @@ int PlayerPresentation::getYorigin(){
 
 int PlayerPresentation::getRadius(){
     return _radius;
+}
+
+int PlayerPresentation::getXCentre(){
+    return _Player.getOrigin().x;
+}
+
+
+int PlayerPresentation::getYCentre(){
+    return _Player.getOrigin().y;
 }

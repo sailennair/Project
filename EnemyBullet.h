@@ -1,17 +1,16 @@
-#ifndef BULLET_H
-#define BULLET_H
+#ifndef ENEMYBULLET_H
+#define ENEMYBULLET_H
 
-#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
 using namespace sf;
 
-class Bullet
+class EnemyBullet
 {
 
 public:
-    Bullet(int xPos, int yPos, float theta, int radius, int type);
+    EnemyBullet(int xPos, int yPos, float theta);
 
     void fire(RenderWindow& window);
 
@@ -22,13 +21,15 @@ public:
     int getYPosition();
     int getDamage();
     
-    RectangleShape bullet;
+    RectangleShape enemybullet;
         
 
 private:
     
-    
+    int _bulletXpos;
+    int _bulletYpos;
     int _damage = 5;
+    float _theta;
     
   
 };

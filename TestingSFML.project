@@ -26,6 +26,10 @@
     <File Name="Enemy.cpp"/>
     <File Name="random.h"/>
     <File Name="random.cpp"/>
+    <File Name="EnemyBullet.h"/>
+    <File Name="EnemyBullet.cpp"/>
+    <File Name="Satellite.h"/>
+    <File Name="Satellite.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

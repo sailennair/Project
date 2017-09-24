@@ -30,6 +30,8 @@ public:
        int getXorigin();
        int getYorigin();
        int getRadius();
+       int getXCentre();
+       int getYCentre();
      //  void keyPressed(Event event);
       
       
@@ -45,6 +47,8 @@ private:
       int _yPos;
       int _xWindow;
       int _yWindow;
+      int _xCentre;
+      int _yCentre;
       
      // void move(int newxPos, int newyPos);
       

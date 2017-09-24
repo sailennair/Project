@@ -1,5 +1,5 @@
-#ifndef ENEMY_H
-#define ENEMY_H
+#ifndef SATELLITE_H
+#define SATELLITE_H
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -9,28 +9,32 @@
 #include "random.h"
 #include <time.h>
 
-#define PI 3.14159265
-
 using namespace sf;
 
-class Enemy
+class Satellite
 {
 public:
-    Enemy(RenderWindow& window, int playerXpos, int playerYpos, float theta);
+    Satellite(RenderWindow& window, int playerXpos, int playerYpos, float theta, int radius);
 
     void moveIncrement();
 
     void draw(RenderWindow& window);
 
     void updateMovement();
+
     int getXPosition();
+
     int getYPosition();
+
     int getHealth();
+
     void decreaseHealth(int damage);
+
     bool isAlive();
-    
+
     void centreEntity(float angle);
-    RectangleShape _enemy;
+
+    RectangleShape satellite;
 
 private:
     float _theta;
@@ -40,8 +44,7 @@ private:
     int _ypos;
     int _windowCentreX;
     int _windowCentreY;
-   // bool isAlive;
-    
     int _health = 45;
+    int _radius;
 };
 #endif
