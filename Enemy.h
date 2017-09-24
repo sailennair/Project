@@ -28,6 +28,8 @@ public:
     int getHealth();
     void decreaseHealth(int damage);
     bool isAlive();
+    void reSize();
+    void outOfScreenMovement();
     
     void centreEntity(float angle);
     RectangleShape _enemy;

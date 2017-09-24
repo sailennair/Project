@@ -2,7 +2,9 @@
 
 Enemy::Enemy(RenderWindow& window, int playerXpos, int playerYpos, float theta)
 {
-    _enemy.setSize(Vector2f(30, 30));
+   // _enemy.setSize(Vector2f(30, 30));
+   
+    _enemy.setSize(Vector2f(15, 15));
     _enemy.setFillColor(Color::Red);
 
     _windowCentreX = (window.getSize().x) / 2;
@@ -21,6 +23,17 @@ Enemy::Enemy(RenderWindow& window, int playerXpos, int playerYpos, float theta)
 void Enemy::moveIncrement()
 {
     _enemy.move((_xpos * cos(_theta)) * 0.01, (_ypos * sin(_theta)) * 0.01);
+   
+    _enemy.setSize(Vector2f(_enemy.getSize().x + 0.5,_enemy.getSize().y + 0.5));
+    
+    
+    
+}
+
+void Enemy:: outOfScreenMovement(){
+    _enemy.move((_xpos * cos(_theta)) * 0.01, (_ypos * sin(_theta)) * 0.01);
+    _enemy.scale(1,1);
+    
 }
 
 void Enemy::draw(RenderWindow& window)
@@ -40,6 +53,12 @@ int Enemy::getYPosition()
 
 void Enemy::centreEntity(float angle)
 {
+    
+   
+     _enemy.setSize(Vector2f(15, 15));
+    
+    
+    
     _enemy.setPosition(_windowCentreX, _windowCentreY);
 
     _theta = angle;
@@ -47,6 +66,8 @@ void Enemy::centreEntity(float angle)
     _xpos = _enemy.getPosition().x;
 
     _ypos = _enemy.getPosition().y;
+    
+    
 }
 
 void Enemy::decreaseHealth(int damage)
@@ -66,4 +87,8 @@ bool Enemy::isAlive()
     } else {
         return true;
     }
+}
+
+void Enemy::reSize(){
+   _enemy.setSize(Vector2f(15,15));
 }

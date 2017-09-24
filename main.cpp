@@ -48,6 +48,7 @@ int main(int argc, char** argv)
     bool isEnemyFiring = false;
     int newGunCount = 0;
     int gunType = 1;
+    bool outOfBounds = false;
 
     vector<EnemyBullet> enemyBulletVec;
 
@@ -117,10 +118,10 @@ int main(int argc, char** argv)
             if(newGunCount > 0 && newGunCount % 3 == 0) {
                 gunType = 2;
             }
-//            Bullet newBullet(playerSprite.getXorigin(), playerSprite.getYorigin(), spriteLogic.getTheta(),
-//                playerSprite.getRadius(), gunType);
-                
-                Bullet newBullet(playerSprite.getXpos(), playerSprite.getYpos(), spriteLogic.getTheta(),
+            //            Bullet newBullet(playerSprite.getXorigin(), playerSprite.getYorigin(), spriteLogic.getTheta(),
+            //                playerSprite.getRadius(), gunType);
+
+            Bullet newBullet(playerSprite.getXpos(), playerSprite.getYpos(), spriteLogic.getTheta(),
                 playerSprite.getRadius(), gunType);
 
             bulletVec.push_back(newBullet);
@@ -146,11 +147,11 @@ int main(int argc, char** argv)
                     enemyVec[counter2].decreaseHealth(bulletVec[counter].getDamage());
                     // bulletVec.erase(bulletVec.begin() + counter);
                     bulletVec[counter].bullet.setFillColor(Color::Black);
-                   
+
                     if(bulletVec[counter].getDamage() > 0) {
                         cout << "collision" << endl;
                     }
-                     bulletVec[counter].setDamage(0);
+                    bulletVec[counter].setDamage(0);
                 }
 
                 counter2++;
@@ -211,9 +212,10 @@ int main(int argc, char** argv)
         enemyOutOfBounds = 0;
 
         for(auto i = 0; i < enemyVec.size(); i++) {
-            if((enemyVec[i].getXPosition() < 0) || (enemyVec[i].getXPosition() > ((window.getSize().x))) ||
-                (enemyVec[i].getYPosition() > ((window.getSize().y))) || (enemyVec[i].getYPosition() < 0)) {
-
+            outOfBounds = false;
+            if((enemyVec[i].getXPosition() + enemyVec[i]._enemy.getSize().x < 0 ) || (enemyVec[i].getXPosition() > ((window.getSize().x))) ||
+                (enemyVec[i].getYPosition() > ((window.getSize().y))) || (enemyVec[i].getYPosition() + enemyVec[i]._enemy.getSize().y) < 0) {
+                outOfBounds = true;
                 enemyOutOfBounds++;
             }
 
@@ -221,6 +223,7 @@ int main(int argc, char** argv)
 
                 for(auto k = 0; k < enemyVec.size(); k++) {
                     enemyVec[i].centreEntity(spriteLogic.getTheta());
+                    
                 }
             }
 
@@ -229,9 +232,16 @@ int main(int argc, char** argv)
                 cout << "Enemy Dead" << endl;
             }
 
+           // enemyVec[i].reSize();
             enemyVec[i].draw(window);
+            
+            if(outOfBounds == false) {
+                enemyVec[i].moveIncrement();
 
-            enemyVec[i].moveIncrement();
+            } else {
+                cout << " out of screen movement"<<endl;
+                enemyVec[i].outOfScreenMovement();
+            }
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
