@@ -13,8 +13,12 @@ Bullet::Bullet(int xPos, int yPos, float theta, int radius, int type)
         bullet.setFillColor(Color::Red);
         _damage = 20;
     }
+    _theta = theta - PI/2;
 
-    bullet.setPosition(xPos + radius * cos(theta) + 23 * cos(theta), yPos + radius * sin(theta));
+    //bullet.setPosition(xPos + radius * cos(theta) + 23 * cos(theta), yPos + radius * sin(theta));
+    bullet.setPosition(xPos + 24*cos(_theta) , yPos + 24*sin(_theta) );
+    std:: cout<< theta << std::endl;
+    
 }
 
 void Bullet::fire(RenderWindow& window)

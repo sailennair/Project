@@ -117,7 +117,10 @@ int main(int argc, char** argv)
             if(newGunCount > 0 && newGunCount % 3 == 0) {
                 gunType = 2;
             }
-            Bullet newBullet(playerSprite.getXorigin(), playerSprite.getYorigin(), spriteLogic.getTheta(),
+//            Bullet newBullet(playerSprite.getXorigin(), playerSprite.getYorigin(), spriteLogic.getTheta(),
+//                playerSprite.getRadius(), gunType);
+                
+                Bullet newBullet(playerSprite.getXpos(), playerSprite.getYpos(), spriteLogic.getTheta(),
                 playerSprite.getRadius(), gunType);
 
             bulletVec.push_back(newBullet);

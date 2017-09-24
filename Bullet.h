@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#define PI 3.14159265
 using namespace sf;
 
 class Bullet
@@ -28,7 +29,7 @@ public:
 
 private:
     
-    
+    float _theta;
     int _damage = 5;
     
   
