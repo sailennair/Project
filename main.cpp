@@ -235,7 +235,7 @@ int main(int argc, char** argv)
            // enemyVec[i].reSize();
             enemyVec[i].draw(window);
             
-            if(outOfBounds == false) {
+            if(outOfBounds == false && enemyVec[i].isAlive() == true) {
                 enemyVec[i].moveIncrement();
 
             } else {
