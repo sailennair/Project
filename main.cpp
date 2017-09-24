@@ -33,7 +33,6 @@ int main(int argc, char** argv)
     PlayerLogic spriteLogic(xWindow, yWindow);
     Sprite actualSprite = playerSprite.getPlayer();
 
-    // Enemy enemy(Vector2f(50, 50));
     std::vector<Enemy> enemyVec;
 
     std::vector<Bullet> bulletVec;
@@ -98,22 +97,21 @@ int main(int argc, char** argv)
                 createEnemyNumber++;
             }
         }
-
+        ///////////////////////////////////////////////////////////////////////////////////////
         // Generatign the Satellites, generating three at once. Need to make them not have a time lifespan , but rather
         // only die when shot. Will use a bool to check this
-        if(satelliteVec.size()==0){
-        if(timer % 500 == 0) {
-            for(int w = 0; w < 3; w++) {
-                Satellite satellite(window, playerSprite.getXpos() + 30 * w, playerSprite.getYpos() + 30 * w,
-                    spriteLogic.getTheta(), spriteLogic.getRadius());
-                satelliteVec.push_back(satellite);
+        if(satelliteVec.size() == 0) {
+            if(timer % 500 == 0) {
+                for(int w = 0; w < 3; w++) {
+                    Satellite satellite(window, playerSprite.getXpos() + 30 * w, playerSprite.getYpos() + 30 * w,
+                        spriteLogic.getTheta(), spriteLogic.getRadius());
+                    satelliteVec.push_back(satellite);
+                }
             }
         }
-        }
-        
-        
 
         window.clear(sf::Color::Black);
+        //////////////////////////////////////////////////////////////////////////////////////////////
 
         // Collision detection for playerBullet and enemy
         counter = 0;
@@ -132,10 +130,9 @@ int main(int argc, char** argv)
             counter++;
         }
         ////////////////////////////////////////////////////////////////////////////////////
-        
-        
-        //Collision detection for Satellites
-                // Collision detection for playerBullet and enemy
+
+        // Collision detection for Satellites
+        // Collision detection for playerBullet and enemy
         counter = 0;
         for(auto iter = bulletVec.begin(); iter != bulletVec.end(); iter++) {
             counter2 = 0;
@@ -151,20 +148,23 @@ int main(int argc, char** argv)
 
             counter++;
         }
-        //////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        // Firing the bullet from the player sprite and changes gun when three satelittes have been killed
         if(isFiring == true) {
-            if(newGunCount >0 && newGunCount%3 == 0){
+            if(newGunCount > 0 && newGunCount % 3 == 0) {
                 gunType = 2;
             }
-            Bullet newBullet(
-                playerSprite.getXorigin(), playerSprite.getYorigin(), spriteLogic.getTheta(), playerSprite.getRadius(), gunType);
+            Bullet newBullet(playerSprite.getXorigin(), playerSprite.getYorigin(), spriteLogic.getTheta(),
+                playerSprite.getRadius(), gunType);
 
             bulletVec.push_back(newBullet);
             isFiring = false;
-            // std::cout << spriteLogic.getRadius() << "     " << playerSprite.getRadius() << endl;
         }
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        // Deleting the bullet object once it reaches a small area at the centre of the window, if it is not at that
+        // point then it will just draw the bullet and move it a little bit
         for(auto i = 0; i < bulletVec.size(); i++) {
 
             if((bulletVec[i].getXPosition() < ((window.getSize().x / 2) + 20)) &&
@@ -175,10 +175,12 @@ int main(int argc, char** argv)
             }
             bulletVec[i].draw(window);
             bulletVec[i].fire(window);
-            
-             
         }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        // EnemyOutOfBounds checks if all the enemies are out of the visible window, if all are out of the visible
+        // window, then they will reappear from the centre again. This section also shows the deletion of an enemy
+        // object once its health has reached zero
         enemyOutOfBounds = 0;
 
         for(auto i = 0; i < enemyVec.size(); i++) {
@@ -200,27 +202,28 @@ int main(int argc, char** argv)
                 cout << "Enemy Dead" << endl;
             }
 
-            //enemyVec[i].draw(window);
-
+            enemyVec[i].draw(window);
 
             enemyVec[i].moveIncrement();
         }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        // The program will check if there are any satellites on the scree, if there is then they will be drawn and the
+        // deletion of them will occure if their health reahces 0, once 3 satelliets have been killed, the gun will
+        // upgrade howver this is doen in the bullet class
         if(satelliteVec.size() > 0) {
             for(auto v = 0; v < satelliteVec.size(); v++) {
-                
-                
+
                 satelliteVec[v].draw(window);
                 satelliteVec[v].updateMovement();
-                
-                if(satelliteVec[v].isAlive() == false){
+
+                if(satelliteVec[v].isAlive() == false) {
                     satelliteVec.erase(satelliteVec.begin() + v);
                     newGunCount++;
                 }
             }
         }
-
-       
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         playerSprite.draw(window);
 

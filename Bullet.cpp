@@ -12,7 +12,6 @@ Bullet::Bullet(int xPos, int yPos, float theta, int radius, int type)
         bullet.setSize(Vector2f(5, 5));
         bullet.setFillColor(Color::Red);
         _damage = 20;
-
     }
 
     bullet.setPosition(xPos + radius * cos(theta) + 23 * cos(theta), yPos + radius * sin(theta));

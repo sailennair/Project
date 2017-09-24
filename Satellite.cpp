@@ -32,8 +32,8 @@ void Satellite::decreaseHealth(int damage)
 bool Satellite::isAlive()
 {
     if(_health <= 0) {
-        return  false;
+        return false;
     } else {
-        return  true;
+        return true;
     }
 }
