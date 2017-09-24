@@ -36,7 +36,9 @@ int main(int argc, char** argv)
     std::vector<Enemy> enemyVec;
 
     std::vector<Bullet> bulletVec;
-
+    // Enemy Bullets are Bullets just like player Bullets
+    std::vector<Bullet> enemyBulletVec;
+    
     std::vector<Satellite> satelliteVec;
 
     bool isFiring = false;
@@ -49,7 +51,7 @@ int main(int argc, char** argv)
     int newGunCount = 0;
     int gunType = 1;
 
-    vector<EnemyBullet> enemyBulletVec;
+
 
     while(window.isOpen()) {
 
@@ -123,6 +125,19 @@ int main(int argc, char** argv)
             bulletVec.push_back(newBullet);
             isFiring = false;
         }
+        
+        
+///************************************************************************************
+        ////Enemy bullet shooting
+        for( auto iter = begin(enemyVec); iter != end(enemyVec); iter++){
+            if(iter->isFiring() && iter->isEnemyWithinScreen(window)){
+                Bullet enemyBullet(iter->getXPosition(), iter->getYPosition(), 0, 0, 1);
+                enemyBulletVec.push_back(enemyBullet);
+            }
+        }
+///***********************************************************************************
+
+        
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //////////////////////////////////////////////////////////////////////////////////////////////
@@ -200,6 +215,25 @@ int main(int argc, char** argv)
 
             bulletVec[i].fire(window);
         }
+        
+///**********************************************************************************
+        //This section is to draw enemy Bullets
+        for( auto iter = begin(enemyBulletVec); iter != end(enemyBulletVec); iter++){
+            
+            if((iter->getXPosition() < window.getSize().x ) &&
+                (iter->getXPosition() < 0) &&
+                (iter->getYPosition() < window.getSize().y ) &&
+                (iter->getYPosition() < 0)) {
+                enemyBulletVec.erase(iter);
+            }
+            
+            iter->draw(window);
+            
+            iter->fireInStraightLine(playerSprite.getXpos(), playerSprite.getYpos());   
+        }
+///*********************************************************************************
+        
+        
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // EnemyOutOfBounds checks if all the enemies are out of the visible window, if all are out of the visible

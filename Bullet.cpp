@@ -63,3 +63,15 @@ int Bullet::getDamage()
 void Bullet::setDamage(int damage){
     _damage = damage;
 }
+
+
+void Bullet::fireInStraightLine(int x, int y){
+
+    int xDifference = x - bullet.getPosition().x;
+    int yDifference = y - bullet.getPosition().y;
+    
+    auto speed = 5; // The biger the speed number the slower the bullet moves
+    
+    bullet.move(xDifference/speed, yDifference/speed);
+    
+}

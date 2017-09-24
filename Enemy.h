@@ -29,6 +29,9 @@ public:
     void decreaseHealth(int damage);
     bool isAlive();
     
+    bool isFiring();
+    bool isEnemyWithinScreen(const RenderWindow& window);
+    
     void centreEntity(float angle);
     RectangleShape _enemy;
 
@@ -41,6 +44,9 @@ private:
     int _windowCentreX;
     int _windowCentreY;
    // bool isAlive;
+   
+    //To track bullet fired time
+    long unsigned int timeBulletFired;
     
     int _health = 45;
 };

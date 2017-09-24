@@ -16,6 +16,9 @@ Enemy::Enemy(RenderWindow& window, int playerXpos, int playerYpos, float theta)
     _xpos = _enemy.getPosition().x;
 
     _ypos = _enemy.getPosition().y;
+    
+    // initializing to some random time so first bullet is shot faster
+     timeBulletFired = 500-00;
 }
 
 void Enemy::moveIncrement()
@@ -66,4 +69,28 @@ bool Enemy::isAlive()
     } else {
         return true;
     }
+}
+
+
+// This is que query to see if a shot is fired by Enemy
+bool Enemy::isFiring(){
+    timeBulletFired++;
+    
+    if (timeBulletFired>100-000-000-000-000-000)
+        return true;
+        
+    return false;
+}
+
+bool Enemy::isEnemyWithinScreen(const RenderWindow& window){
+    
+        if((_enemy.getPosition().x < 0) ||
+            (_enemy.getPosition().x > window.getSize().x ) ||
+            (_enemy.getPosition().y < 0) ||
+            (_enemy.getPosition().y > window.getSize().y)) {
+            
+            return false;
+        }
+        
+    return true;
 }

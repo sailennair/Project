@@ -14,6 +14,8 @@ public:
     Bullet(int xPos, int yPos, float theta, int radius, int type);
 
     void fire(RenderWindow& window);
+    
+    void fireInStraightLine(int x, int y);
 
     void draw(RenderWindow& window);
 
