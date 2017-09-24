@@ -20,7 +20,7 @@ Bullet::Bullet(int xPos, int yPos, float theta, int radius, int type)
 void Bullet::fire(RenderWindow& window)
 {
 
-    auto speedOfBulletInPixels = 50;
+    auto speedOfBulletInPixels = 25;
 
     int xCenterOfWindow = (window.getSize().x) / 2;
 
@@ -58,4 +58,8 @@ int Bullet::getYPosition()
 int Bullet::getDamage()
 {
     return _damage;
+}
+
+void Bullet::setDamage(int damage){
+    _damage = damage;
 }
