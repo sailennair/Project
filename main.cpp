@@ -50,6 +50,8 @@ int main(int argc, char** argv)
     int gunType = 1;
 
     vector<EnemyBullet> enemyBulletVec;
+    
+      
 
     while(window.isOpen()) {
 
@@ -111,17 +113,40 @@ int main(int argc, char** argv)
         }
 
         window.clear(sf::Color::Black);
+           // Firing the bullet from the player sprite and changes gun when three satelittes have been killed
+        if(isFiring == true) {
+            if(newGunCount > 0 && newGunCount % 3 == 0) {
+                gunType = 2;
+            }
+            Bullet newBullet(playerSprite.getXorigin(), playerSprite.getYorigin(), spriteLogic.getTheta(),
+                playerSprite.getRadius(), gunType);
+
+            bulletVec.push_back(newBullet);
+            isFiring = false;
+        }
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        
+        
+        
         //////////////////////////////////////////////////////////////////////////////////////////////
 
         // Collision detection for playerBullet and enemy
         counter = 0;
         for(auto iter = bulletVec.begin(); iter != bulletVec.end(); iter++) {
             counter2 = 0;
+            if(bulletVec.size() == 0){
+                    break;
+                }
             for(auto iter4 = enemyVec.begin(); iter4 != enemyVec.end(); iter4++) {
+                if(bulletVec.size() == 0){
+                    break;
+                }
                 if(bulletVec[counter].bullet.getGlobalBounds().intersects(
                        enemyVec[counter2]._enemy.getGlobalBounds())) {
                     enemyVec[counter2].decreaseHealth(bulletVec[counter].getDamage());
-                    cout << "collision" << endl;
+                    bulletVec.erase(bulletVec.begin() +counter);
+                    //cout << "collision" << endl;
                 }
 
                 counter2++;
@@ -135,12 +160,20 @@ int main(int argc, char** argv)
         // Collision detection for playerBullet and enemy
         counter = 0;
         for(auto iter = bulletVec.begin(); iter != bulletVec.end(); iter++) {
+            if(bulletVec.size() == 0){
+                    break;
+                }
             counter2 = 0;
             for(auto iter4 = satelliteVec.begin(); iter4 != satelliteVec.end(); iter4++) {
+                if(bulletVec.size() == 0){
+                    break;
+                }
                 if(bulletVec[counter].bullet.getGlobalBounds().intersects(
                        satelliteVec[counter2].satellite.getGlobalBounds())) {
+                           
                     satelliteVec[counter2].decreaseHealth(bulletVec[counter].getDamage());
-                    cout << "collision" << endl;
+                    bulletVec.erase(bulletVec.begin() +counter);
+                    
                 }
 
                 counter2++;
@@ -150,18 +183,7 @@ int main(int argc, char** argv)
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        // Firing the bullet from the player sprite and changes gun when three satelittes have been killed
-        if(isFiring == true) {
-            if(newGunCount > 0 && newGunCount % 3 == 0) {
-                gunType = 2;
-            }
-            Bullet newBullet(playerSprite.getXorigin(), playerSprite.getYorigin(), spriteLogic.getTheta(),
-                playerSprite.getRadius(), gunType);
-
-            bulletVec.push_back(newBullet);
-            isFiring = false;
-        }
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+     
 
         // Deleting the bullet object once it reaches a small area at the centre of the window, if it is not at that
         // point then it will just draw the bullet and move it a little bit
@@ -173,7 +195,9 @@ int main(int argc, char** argv)
                 (bulletVec[i].getYPosition() < ((window.getSize().y / 2) + 20))) {
                 bulletVec.erase(bulletVec.begin() + i);
             }
+            
             bulletVec[i].draw(window);
+            
             bulletVec[i].fire(window);
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
