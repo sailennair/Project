@@ -35,7 +35,8 @@ Debug/Enemy.cpp.o: Enemy.cpp Enemy.h SFML/Window.hpp SFML/System.hpp \
  SFML/Audio/Sound.hpp SFML/Audio/SoundBuffer.hpp \
  SFML/Audio/SoundBufferRecorder.hpp SFML/Audio/SoundRecorder.hpp \
  SFML/Audio/SoundFileFactory.hpp SFML/Audio/SoundFileFactory.inl \
- SFML/Audio/SoundFileReader.hpp SFML/Audio/SoundFileWriter.hpp
+ SFML/Audio/SoundFileReader.hpp SFML/Audio/SoundFileWriter.hpp \
+ EnemyBullet.h
 
 Enemy.h:
 
@@ -214,3 +215,5 @@ SFML/Audio/SoundFileFactory.inl:
 SFML/Audio/SoundFileReader.hpp:
 
 SFML/Audio/SoundFileWriter.hpp:
+
+EnemyBullet.h:

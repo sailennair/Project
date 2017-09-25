@@ -8,6 +8,9 @@
 #include <random>
 #include "random.h"
 #include <time.h>
+#include <vector>
+#include <EnemyBullet.h>
+//#include <RectangleShape.hpp>
 
 #define PI 3.14159265
 
@@ -30,7 +33,13 @@ public:
     bool isAlive();
     void reSize();
     void outOfScreenMovement();
-    
+    int getCentreX();
+
+    int getCentreY();
+    float getTheta();
+
+    std::vector<EnemyBullet> enemyBulletsVec;
+
     void centreEntity(float angle);
     RectangleShape _enemy;
 
@@ -40,10 +49,20 @@ private:
     int _ysign;
     int _xpos;
     int _ypos;
+    int _centreX;
+    int _centreY;
     int _windowCentreX;
     int _windowCentreY;
-   // bool isAlive;
-    
+    float rectScale;
+    float setScale = 0.03;
+    float newScale;
+    Sprite enemySprite;
+    Texture _enemyTexture;
+
+    bool _shouldFire;
+
+    // bool isAlive;
+
     int _health = 45;
 };
 #endif

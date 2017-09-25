@@ -33,8 +33,13 @@ public:
     bool isAlive();
 
     void centreEntity(float angle);
+    
+    int getCentreX();
+     int getCentreY();
 
     RectangleShape satellite;
+    Sprite satelliteSprite;
+    Texture satelliteTexture;
 
 private:
     float _theta;
@@ -46,5 +51,7 @@ private:
     int _windowCentreY;
     int _health = 45;
     int _radius;
+    int _centreX;
+    int _centreY;
 };
 #endif

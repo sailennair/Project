@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#define PI 3.14159265
+
 
 using namespace sf;
 
@@ -21,6 +23,7 @@ public:
     int getYPosition();
     int getDamage();
     
+    
     RectangleShape enemybullet;
         
 
@@ -30,6 +33,9 @@ private:
     int _bulletYpos;
     int _damage = 5;
     float _theta;
+    int _xpos;
+    int _ypos;
+    
     
   
 };

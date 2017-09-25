@@ -4,14 +4,24 @@ EnemyBullet::EnemyBullet(int xPos, int yPos, float theta)
 {
    
     enemybullet.setSize(Vector2f(5,5));
+    
     enemybullet.setFillColor(Color::Red);
 
+//needs to get position of enemy centre, then dont need to rotate enemy
     enemybullet.setPosition(xPos, yPos);
     
+    
     _bulletXpos = enemybullet.getPosition().x;
+    
+    _xpos = xPos;
+    _ypos = yPos;
 
     _bulletYpos = enemybullet.getPosition().y;
-    _theta = theta;
+    
+    //need the angle of the enemy direction
+    _theta = theta ;//+PI/6;
+    
+    
 }
 
 
@@ -19,10 +29,11 @@ EnemyBullet::EnemyBullet(int xPos, int yPos, float theta)
 void EnemyBullet::fire(RenderWindow& window)
 {
  
+    
 
-    auto xIncrement = (_bulletXpos * cos(_theta)) * 0.1;
+    auto xIncrement = (_xpos * cos(_theta)) * 0.01;
 
-    auto yIncrement = (_bulletYpos * sin(_theta)) * 0.1;
+    auto yIncrement = (_ypos * sin(_theta)) * 0.01;
 
     enemybullet.move(xIncrement, yIncrement);
    

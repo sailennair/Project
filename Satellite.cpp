@@ -7,21 +7,33 @@ Satellite::Satellite(RenderWindow& window, int playerXpos, int playerYpos, float
     _theta = theta;
 
     satellite.setSize(Vector2f(30, 30));
-    satellite.setFillColor(Color::Blue);
-
     satellite.setPosition(playerXpos - _radius * cos(_theta), playerYpos - _radius * sin(_theta));
+    // satellite.setFillColor(Color::Blue);
+
+    // satelliteSprite.setTextureRect(IntRect(0, 0, 30, 30));
+
+    if(!satelliteTexture.loadFromFile("enemyShip.png")) {
+        std::cerr << "Error Loading Player Texture";
+    }
+    satelliteTexture.setSmooth(true);
+    satelliteSprite.setTexture(satelliteTexture);
+    satelliteSprite.setPosition(satellite.getPosition());
+    satelliteSprite.scale(0.3, 0.3);
 }
 
 void Satellite::draw(RenderWindow& window)
 {
-    window.draw(satellite);
+    // window.draw(satellite);
+    window.draw(satelliteSprite);
 }
 
 void Satellite::updateMovement()
 {
 
-    // satellite.move((_radius)*cos(_theta),(_radius)*sin(_theta));
     satellite.rotate(10);
+    satelliteSprite.setTexture(satelliteTexture);
+   // satelliteSprite.scale(0.3, 0.3);
+    satelliteSprite.rotate(10);
 }
 
 void Satellite::decreaseHealth(int damage)
@@ -36,4 +48,18 @@ bool Satellite::isAlive()
     } else {
         return true;
     }
+}
+
+
+
+int Satellite::getCentreX()
+{
+    _centreX = satellite.getPosition().x + (satellite.getSize().x / 2);
+    return _centreX;
+}
+
+int Satellite::getCentreY()
+{
+    _centreY = satellite.getPosition().y + (satellite.getSize().y / 2);
+    return _centreY;
 }

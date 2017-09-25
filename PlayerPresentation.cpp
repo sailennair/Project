@@ -19,7 +19,7 @@ PlayerPresentation::PlayerPresentation(int xWindow, int yWindow)
     _playerSpaceshipTexture.setSmooth(true);
     _Player.setTexture(_playerSpaceshipTexture);
     _Player.setScale(Vector2f(0.1, 0.1));
-   // _Player.Resize(Vector2f(40, 40));
+   
     _Player.setPosition(_xPos, _yPos);
     _Player.setOrigin(23, 0);
     
