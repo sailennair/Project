@@ -12,13 +12,13 @@ Satellite::Satellite(RenderWindow& window, int playerXpos, int playerYpos, float
 
     // satelliteSprite.setTextureRect(IntRect(0, 0, 30, 30));
 
-    if(!satelliteTexture.loadFromFile("enemyShip.png")) {
+    if(!satelliteTexture.loadFromFile("satellite.png")) {
         std::cerr << "Error Loading Player Texture";
     }
     satelliteTexture.setSmooth(true);
     satelliteSprite.setTexture(satelliteTexture);
     satelliteSprite.setPosition(satellite.getPosition());
-    satelliteSprite.scale(0.3, 0.3);
+    satelliteSprite.scale(0.05, 0.05);
 }
 
 void Satellite::draw(RenderWindow& window)

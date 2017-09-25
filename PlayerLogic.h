@@ -7,7 +7,7 @@
 
 #define PI 3.14159265
 
-class PlayerLogic 
+class PlayerLogic
 {
 
 public:
@@ -17,17 +17,20 @@ public:
     int moveRightX();
     int moveRightY();
     void angleOfRotation();
-     float getAngle();
-     float getTheta();
-     int getRadius();
+    float getAngle();
+    float getTheta();
+    int getRadius();
+    int getHealth();
+    void reduceHealth(int damage);
+    bool isAlive();
 
 private:
     float _theta = (PI) / 2;
-    
+
     int _radius;
     int _xPos;
     int _yPos;
-
+    int _health = 100;
     float radiansToDegrees(float x);
     float degreesToRadians(float x);
 };

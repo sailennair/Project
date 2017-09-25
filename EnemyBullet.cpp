@@ -58,3 +58,7 @@ int EnemyBullet::getYPosition(){
 int EnemyBullet::getDamage(){
     return _damage;
 }
+
+void EnemyBullet::setDamage(int damage){
+    _damage = damage;
+}

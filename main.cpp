@@ -106,7 +106,7 @@ int main(int argc, char** argv)
         // Generatign the Satellites, generating three at once. Need to make them not have a time lifespan , but rather
         // only die when shot. Will use a bool to check this
         if(satelliteVec.size() == 0) {
-            if(timer % 500 == 0) {
+            if(timer % 1000 == 0 && timer > 0) {
                 for(int w = 0; w < 3; w++) {
                     Satellite satellite(window, playerSprite.getXpos() + 30 * w, playerSprite.getYpos() + 30 * w,
                         spriteLogic.getTheta(), spriteLogic.getRadius());
@@ -224,22 +224,44 @@ int main(int argc, char** argv)
                 outOfBounds = true;
                 enemyOutOfBounds++;
             }
- 
- 
-           // for(auto k = 0; k < 3; k++) {
-                //EnemyBullet enemyBullet(enemyVec[i].getCentreX(), enemyVec[i].getCentreY(), enemyVec[i].getTheta());
-                
-                //enemyBulletVec.push_back(enemyBullet);
-                
-                //enemyBullet.draw(window);
-              //  enemyBullet.fire(window);
-           // }
-           for(auto k = 0; k < enemyVec[i].enemyBulletsVec.size(); k++){
-            enemyVec[i].enemyBulletsVec[k].draw(window);
-            enemyVec[i].enemyBulletsVec[k].fire(window);
+
+            // for(auto k = 0; k < 3; k++) {
+            // EnemyBullet enemyBullet(enemyVec[i].getCentreX(), enemyVec[i].getCentreY(), enemyVec[i].getTheta());
+
+            // enemyBulletVec.push_back(enemyBullet);
+
+            // enemyBullet.draw(window);
+            //  enemyBullet.fire(window);
+            // }
+            for(auto k = 0; k < enemyVec[i].enemyBulletsVec.size(); k++) {
+                enemyVec[i].enemyBulletsVec[k].draw(window);
+                enemyVec[i].enemyBulletsVec[k].fire(window);
+            }
             
-           }
-          
+                   //////////////////////////////////////////////////////////////////////////////////////////////
+
+        // Collision detection for enemyBullet and Player
+        counter = 0;
+        for(auto iter =  enemyVec[i].enemyBulletsVec.begin(); iter !=  enemyVec[i].enemyBulletsVec.end(); iter++) {
+         //   std::cout << "in" << std::endl;
+            if( enemyVec[i].enemyBulletsVec[counter].enemybullet.getGlobalBounds().intersects(
+                   playerSprite.getPlayer().getGlobalBounds())) {
+              //  std::cout << "yes" << std::endl;
+
+                spriteLogic.reduceHealth( enemyVec[i].enemyBulletsVec[counter].getDamage());
+                // bulletVec.erase(bulletVec.begin() + counter);
+                 enemyVec[i].enemyBulletsVec[counter].enemybullet.setFillColor(Color::Black);
+
+                if( enemyVec[i].enemyBulletsVec[counter].getDamage() > 0) {
+                    cout << "collision" << endl;
+                }
+                 enemyVec[i].enemyBulletsVec[counter].setDamage(0);
+            }
+            counter++;
+        }
+        ////////////////////////////////////////////////////////////////////////////////////
+            
+            
 
             if(enemyOutOfBounds == enemyVec.size()) {
 
@@ -268,6 +290,8 @@ int main(int argc, char** argv)
             }
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::cout<<spriteLogic.getHealth()<<std::endl;
+
 
         // The program will check if there are any satellites on the scree, if there is then they will be drawn and the
         // deletion of them will occure if their health reahces 0, once 3 satelliets have been killed, the gun will
@@ -277,9 +301,10 @@ int main(int argc, char** argv)
 
                 satelliteVec[v].draw(window);
                 satelliteVec[v].updateMovement();
-                
-                if(timer%25 == 0){
-                    EnemyBullet satelliteBullet(satelliteVec[v].getCentreX(), satelliteVec[v].getCentreY(), spriteLogic.getTheta());
+
+                if(timer % 25 == 0) {
+                    EnemyBullet satelliteBullet(
+                        satelliteVec[v].getCentreX(), satelliteVec[v].getCentreY(), spriteLogic.getTheta());
                     satelliteBulletVec.push_back(satelliteBullet);
                 }
 
@@ -291,38 +316,31 @@ int main(int argc, char** argv)
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-for (auto k =0; k< satelliteBulletVec.size();k++){
-    satelliteBulletVec[k].draw(window);
-                satelliteBulletVec[k].fire(window);
-                
-                if ((satelliteBulletVec[k].getXPosition() < 10) ||
+        for(auto k = 0; k < satelliteBulletVec.size(); k++) {
+            satelliteBulletVec[k].draw(window);
+            satelliteBulletVec[k].fire(window);
+
+            if((satelliteBulletVec[k].getXPosition() < 10) ||
                 (satelliteBulletVec[k].getXPosition() > window.getSize().x) ||
-                (satelliteBulletVec[k].getYPosition() > ((window.getSize().y )) ) ||
+                (satelliteBulletVec[k].getYPosition() > ((window.getSize().y))) ||
                 (satelliteBulletVec[k].getYPosition() < 0)) {
-                
-                
-                satelliteBulletVec.erase(satelliteBulletVec.begin()+k);
-}
-}
 
-
-          for(auto k = 0; k < enemyBulletVec.size(); k++) {
-              
-                enemyBulletVec[k].draw(window);
-                enemyBulletVec[k].fire(window);
-                
-                if ((enemyBulletVec[k].getXPosition() < 10) ||
-                (enemyBulletVec[k].getXPosition() > window.getSize().x) ||
-                (enemyBulletVec[k].getYPosition() > ((window.getSize().y )) ) ||
-                (enemyBulletVec[k].getYPosition() < 0)) {
-                
-                
-                enemyBulletVec.erase(enemyBulletVec.begin()+k);
+                satelliteBulletVec.erase(satelliteBulletVec.begin() + k);
             }
-            
-            
-          }
-            
+        }
+
+        for(auto k = 0; k < enemyBulletVec.size(); k++) {
+
+            enemyBulletVec[k].draw(window);
+            enemyBulletVec[k].fire(window);
+
+            if((enemyBulletVec[k].getXPosition() < 10) || (enemyBulletVec[k].getXPosition() > window.getSize().x) ||
+                (enemyBulletVec[k].getYPosition() > ((window.getSize().y))) || (enemyBulletVec[k].getYPosition() < 0)) {
+
+                enemyBulletVec.erase(enemyBulletVec.begin() + k);
+            }
+        }
+
         playerSprite.draw(window);
 
         window.display();

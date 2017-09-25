@@ -22,6 +22,7 @@ public:
     int getXPosition();
     int getYPosition();
     int getDamage();
+    void setDamage(int damage);
     
     
     RectangleShape enemybullet;

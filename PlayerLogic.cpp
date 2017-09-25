@@ -66,3 +66,22 @@ int PlayerLogic::getRadius()
 {
     return _radius;
 }
+
+int PlayerLogic::getHealth()
+{
+    return _health;
+}
+
+void PlayerLogic::reduceHealth(int damage)
+{
+    _health -= damage;
+}
+
+bool PlayerLogic::isAlive()
+{
+    if(_health <= 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
