@@ -46,7 +46,7 @@ void Enemy::moveIncrement()
 {
     _enemy.move((_xpos * cos(_theta)) * 0.0075, (_ypos * sin(_theta)) * 0.0075);
 
-    _enemy.setSize(Vector2f(_enemy.getSize().x + 0.25, _enemy.getSize().y + 0.25));
+    _enemy.setSize(Vector2f(_enemy.getSize().x + 0.5, _enemy.getSize().y + 0.5));
 
     rectScale = (((_enemy.getSize().x + 0.5) / (_enemy.getSize().x)) - 1) * 0.1;
     newScale += rectScale;
@@ -70,7 +70,7 @@ void Enemy::outOfScreenMovement()
 
 void Enemy::draw(RenderWindow& window)
 {
-    // window.draw(_enemy);
+   //  window.draw(_enemy);
     window.draw(enemySprite);
 }
 

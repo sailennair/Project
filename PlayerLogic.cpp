@@ -7,6 +7,8 @@ PlayerLogic::PlayerLogic(int xWindow, int yWindow)
     //  _yPos/2 -20
 }
 
+//_theta = (PI) / 2;
+
 int PlayerLogic::moveLeftX()
 {
     _theta = _theta + degreesToRadians(-2);

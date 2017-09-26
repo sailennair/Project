@@ -62,8 +62,7 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/PlayerPresentation.cpp$(ObjectSuffix) $(IntermediateDirectory)/PlayerLogic.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameWindow.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/entity.cpp$(ObjectSuffix) $(IntermediateDirectory)/projectile.cpp$(ObjectSuffix) $(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IntermediateDirectory)/random.cpp$(ObjectSuffix) $(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/Satellite.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/PlayerPresentation.cpp$(ObjectSuffix) $(IntermediateDirectory)/PlayerLogic.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameWindow.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IntermediateDirectory)/random.cpp$(ObjectSuffix) $(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Satellite.cpp$(ObjectSuffix) $(IntermediateDirectory)/TestsForGame.cpp$(ObjectSuffix) 
 
 
 
@@ -94,14 +93,6 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/User/Documents/Software2/Project/TestingSFML/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
-
-$(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
-
 $(IntermediateDirectory)/PlayerPresentation.cpp$(ObjectSuffix): PlayerPresentation.cpp $(IntermediateDirectory)/PlayerPresentation.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/User/Documents/Software2/Project/TestingSFML/PlayerPresentation.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/PlayerPresentation.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/PlayerPresentation.cpp$(DependSuffix): PlayerPresentation.cpp
@@ -134,22 +125,6 @@ $(IntermediateDirectory)/Bullet.cpp$(DependSuffix): Bullet.cpp
 $(IntermediateDirectory)/Bullet.cpp$(PreprocessSuffix): Bullet.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Bullet.cpp$(PreprocessSuffix) Bullet.cpp
 
-$(IntermediateDirectory)/entity.cpp$(ObjectSuffix): entity.cpp $(IntermediateDirectory)/entity.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/User/Documents/Software2/Project/TestingSFML/entity.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/entity.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/entity.cpp$(DependSuffix): entity.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/entity.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/entity.cpp$(DependSuffix) -MM entity.cpp
-
-$(IntermediateDirectory)/entity.cpp$(PreprocessSuffix): entity.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/entity.cpp$(PreprocessSuffix) entity.cpp
-
-$(IntermediateDirectory)/projectile.cpp$(ObjectSuffix): projectile.cpp $(IntermediateDirectory)/projectile.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/User/Documents/Software2/Project/TestingSFML/projectile.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/projectile.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/projectile.cpp$(DependSuffix): projectile.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/projectile.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/projectile.cpp$(DependSuffix) -MM projectile.cpp
-
-$(IntermediateDirectory)/projectile.cpp$(PreprocessSuffix): projectile.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/projectile.cpp$(PreprocessSuffix) projectile.cpp
-
 $(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix): Enemy.cpp $(IntermediateDirectory)/Enemy.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/User/Documents/Software2/Project/TestingSFML/Enemy.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Enemy.cpp$(DependSuffix): Enemy.cpp
@@ -181,6 +156,14 @@ $(IntermediateDirectory)/Satellite.cpp$(DependSuffix): Satellite.cpp
 
 $(IntermediateDirectory)/Satellite.cpp$(PreprocessSuffix): Satellite.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Satellite.cpp$(PreprocessSuffix) Satellite.cpp
+
+$(IntermediateDirectory)/TestsForGame.cpp$(ObjectSuffix): TestsForGame.cpp $(IntermediateDirectory)/TestsForGame.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/User/Documents/Software2/Project/TestingSFML/TestsForGame.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/TestsForGame.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/TestsForGame.cpp$(DependSuffix): TestsForGame.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/TestsForGame.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/TestsForGame.cpp$(DependSuffix) -MM TestsForGame.cpp
+
+$(IntermediateDirectory)/TestsForGame.cpp$(PreprocessSuffix): TestsForGame.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/TestsForGame.cpp$(PreprocessSuffix) TestsForGame.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

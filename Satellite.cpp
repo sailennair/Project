@@ -63,3 +63,7 @@ int Satellite::getCentreY()
     _centreY = satellite.getPosition().y + (satellite.getSize().y / 2);
     return _centreY;
 }
+
+int Satellite::getHealth(){
+    return _health;
+}

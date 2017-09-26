@@ -8,7 +8,7 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="main.cpp"/>
+    <File Name="main.cpp" ExcludeProjConfig="Debug"/>
     <File Name="PlayerPresentation.cpp"/>
     <File Name="PlayerPresentation.h"/>
     <File Name="PlayerLogic.h"/>
@@ -18,11 +18,6 @@
     <File Name="Bullet.h"/>
     <File Name="Enemy.h"/>
     <File Name="Bullet.cpp"/>
-    <File Name="entity.h"/>
-    <File Name="entity.cpp"/>
-    <File Name="playerEntity.h"/>
-    <File Name="projectile.h"/>
-    <File Name="projectile.cpp"/>
     <File Name="Enemy.cpp"/>
     <File Name="random.h"/>
     <File Name="random.cpp"/>
@@ -30,6 +25,7 @@
     <File Name="EnemyBullet.cpp"/>
     <File Name="Satellite.h"/>
     <File Name="Satellite.cpp"/>
+    <File Name="TestsForGame.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

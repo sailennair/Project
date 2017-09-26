@@ -9,7 +9,7 @@ Bullet::Bullet(int xPos, int yPos, float theta, int radius, int type)
         _damage = 5;
     }
     if(type == 2) {
-        bullet.setSize(Vector2f(5, 5));
+        bullet.setSize(Vector2f(10, 10));
         bullet.setFillColor(Color::Red);
         _damage = 20;
     }
