@@ -24,9 +24,9 @@ int main(int argc, char** argv)
 
     GameWindow gameWindow(800, 600);
     FinalWindow windowFinal(800, 600);
-    IntroductionWindow introWindow();
-    
-    //introWindow.run();
+    IntroductionWindow introWindow;
+
+    introWindow.run();
 
     int xWindow = gameWindow.getXWindow();
     int yWindow = gameWindow.getYWindow();
@@ -360,25 +360,30 @@ int main(int argc, char** argv)
                 enemyBulletVec.erase(enemyBulletVec.begin() + k);
             }
         }
-        
-        if (spriteLogic.isAlive() == false){
-            cout<<"You have lost the game"<<endl;
-             windowFinal.setPLayerLostGame(true);
-              
+
+        if(spriteLogic.isAlive() == false) {
+            cout << "You have lost the game" << endl;
+            windowFinal.setPLayerLostGame(true);
+            window.close();
+            //              window.setActive(false);
+            //              window.setVisible(false);
             break;
         }
-        
-        if(enemyVec.size() == 0 && createEnemyNumber == 10){
-            cout<< "You have won the game"<<endl;
-             windowFinal.setPLayerLostGame(false);
-             
+
+        if(enemyVec.size() == 0 && createEnemyNumber == 10) {
+            cout << "You have won the game" << endl;
+            windowFinal.setPLayerLostGame(false);
+            window.close();
+            //               window.setActive(false);
+            //               window.setVisible(false);
             break;
         }
-     
+
         playerSprite.draw(window);
 
         window.display();
     }
+
     windowFinal.run();
 
     cout << enemyVec.size() << endl;
