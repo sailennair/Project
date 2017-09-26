@@ -11,6 +11,8 @@
 #include <time.h>
 #include "EnemyBullet.h"
 #include "Satellite.h"
+#include "IntroductionWindow.h"
+#include "FinalWindow.h"
 
 using namespace std;
 
@@ -20,7 +22,11 @@ int main(int argc, char** argv)
 
     //    window.setVerticalSyncEnabled(true);
 
-    GameWindow gameWindow(1000, 700);
+    GameWindow gameWindow(800, 600);
+    FinalWindow windowFinal(800, 600);
+    IntroductionWindow introWindow();
+    
+    //introWindow.run();
 
     int xWindow = gameWindow.getXWindow();
     int yWindow = gameWindow.getYWindow();
@@ -355,13 +361,17 @@ int main(int argc, char** argv)
             }
         }
         
-//        if (spriteLogic.isAlive() == false){
-//            cout<<"You have lost the game"<<endl;
-//            break;
-//        }
+        if (spriteLogic.isAlive() == false){
+            cout<<"You have lost the game"<<endl;
+             windowFinal.setPLayerLostGame(true);
+              
+            break;
+        }
         
         if(enemyVec.size() == 0 && createEnemyNumber == 10){
             cout<< "You have won the game"<<endl;
+             windowFinal.setPLayerLostGame(false);
+             
             break;
         }
      
@@ -369,6 +379,7 @@ int main(int argc, char** argv)
 
         window.display();
     }
+    windowFinal.run();
 
     cout << enemyVec.size() << endl;
 

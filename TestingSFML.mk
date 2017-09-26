@@ -62,7 +62,8 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/PlayerPresentation.cpp$(ObjectSuffix) $(IntermediateDirectory)/PlayerLogic.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameWindow.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IntermediateDirectory)/random.cpp$(ObjectSuffix) $(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Satellite.cpp$(ObjectSuffix) $(IntermediateDirectory)/TestsForGame.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/PlayerPresentation.cpp$(ObjectSuffix) $(IntermediateDirectory)/PlayerLogic.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameWindow.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IntermediateDirectory)/random.cpp$(ObjectSuffix) $(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Satellite.cpp$(ObjectSuffix) $(IntermediateDirectory)/FinalWindow.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/IntroductionWindow.cpp$(ObjectSuffix) 
 
 
 
@@ -93,6 +94,14 @@ PreBuild:
 ##
 ## Objects
 ##
+$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/User/Documents/Software2/Project/TestingSFML/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
+
+$(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
+
 $(IntermediateDirectory)/PlayerPresentation.cpp$(ObjectSuffix): PlayerPresentation.cpp $(IntermediateDirectory)/PlayerPresentation.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/User/Documents/Software2/Project/TestingSFML/PlayerPresentation.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/PlayerPresentation.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/PlayerPresentation.cpp$(DependSuffix): PlayerPresentation.cpp
@@ -157,13 +166,21 @@ $(IntermediateDirectory)/Satellite.cpp$(DependSuffix): Satellite.cpp
 $(IntermediateDirectory)/Satellite.cpp$(PreprocessSuffix): Satellite.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Satellite.cpp$(PreprocessSuffix) Satellite.cpp
 
-$(IntermediateDirectory)/TestsForGame.cpp$(ObjectSuffix): TestsForGame.cpp $(IntermediateDirectory)/TestsForGame.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/User/Documents/Software2/Project/TestingSFML/TestsForGame.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/TestsForGame.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/TestsForGame.cpp$(DependSuffix): TestsForGame.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/TestsForGame.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/TestsForGame.cpp$(DependSuffix) -MM TestsForGame.cpp
+$(IntermediateDirectory)/FinalWindow.cpp$(ObjectSuffix): FinalWindow.cpp $(IntermediateDirectory)/FinalWindow.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/User/Documents/Software2/Project/TestingSFML/FinalWindow.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/FinalWindow.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/FinalWindow.cpp$(DependSuffix): FinalWindow.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/FinalWindow.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/FinalWindow.cpp$(DependSuffix) -MM FinalWindow.cpp
 
-$(IntermediateDirectory)/TestsForGame.cpp$(PreprocessSuffix): TestsForGame.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/TestsForGame.cpp$(PreprocessSuffix) TestsForGame.cpp
+$(IntermediateDirectory)/FinalWindow.cpp$(PreprocessSuffix): FinalWindow.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/FinalWindow.cpp$(PreprocessSuffix) FinalWindow.cpp
+
+$(IntermediateDirectory)/IntroductionWindow.cpp$(ObjectSuffix): IntroductionWindow.cpp $(IntermediateDirectory)/IntroductionWindow.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/User/Documents/Software2/Project/TestingSFML/IntroductionWindow.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/IntroductionWindow.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/IntroductionWindow.cpp$(DependSuffix): IntroductionWindow.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/IntroductionWindow.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/IntroductionWindow.cpp$(DependSuffix) -MM IntroductionWindow.cpp
+
+$(IntermediateDirectory)/IntroductionWindow.cpp$(PreprocessSuffix): IntroductionWindow.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IntroductionWindow.cpp$(PreprocessSuffix) IntroductionWindow.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

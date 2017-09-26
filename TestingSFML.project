@@ -8,7 +8,7 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="main.cpp" ExcludeProjConfig="Debug"/>
+    <File Name="main.cpp" ExcludeProjConfig=""/>
     <File Name="PlayerPresentation.cpp"/>
     <File Name="PlayerPresentation.h"/>
     <File Name="PlayerLogic.h"/>
@@ -25,7 +25,11 @@
     <File Name="EnemyBullet.cpp"/>
     <File Name="Satellite.h"/>
     <File Name="Satellite.cpp"/>
-    <File Name="TestsForGame.cpp"/>
+    <File Name="TestsForGame.cpp" ExcludeProjConfig="Debug"/>
+    <File Name="FinalWindow.h"/>
+    <File Name="FinalWindow.cpp"/>
+    <File Name="IntroductionWindow.cpp"/>
+    <File Name="IntroductionWindow.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

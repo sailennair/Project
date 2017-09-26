@@ -37,7 +37,8 @@ Debug/main.cpp.o: main.cpp SFML/Window.hpp SFML/System.hpp \
  SFML/Audio/SoundBufferRecorder.hpp SFML/Audio/SoundRecorder.hpp \
  SFML/Audio/SoundFileFactory.hpp SFML/Audio/SoundFileFactory.inl \
  SFML/Audio/SoundFileReader.hpp SFML/Audio/SoundFileWriter.hpp \
- EnemyBullet.h EnemyBullet.h Satellite.h
+ EnemyBullet.h EnemyBullet.h Satellite.h IntroductionWindow.h \
+ FinalWindow.h
 
 SFML/Window.hpp:
 
@@ -228,3 +229,7 @@ EnemyBullet.h:
 EnemyBullet.h:
 
 Satellite.h:
+
+IntroductionWindow.h:
+
+FinalWindow.h:
