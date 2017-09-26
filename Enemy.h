@@ -42,6 +42,8 @@ public:
 
     void centreEntity(float angle);
     RectangleShape _enemy;
+    int getDamage();
+    void setDamage(int damage);
 
 private:
     float _theta;
@@ -58,6 +60,7 @@ private:
     float newScale;
     Sprite enemySprite;
     Texture _enemyTexture;
+    int _damage = 100;
 
     bool _shouldFire;
 

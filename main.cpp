@@ -28,7 +28,7 @@ int main(int argc, char** argv)
     sf::RenderWindow window(sf::VideoMode(xWindow, yWindow), "My Window");
 
     window.setVerticalSyncEnabled(true);
-
+window.setMouseCursorVisible(false);
     PlayerPresentation playerSprite(xWindow, yWindow);
     PlayerLogic spriteLogic(xWindow, yWindow);
     Sprite actualSprite = playerSprite.getPlayer();
@@ -243,13 +243,10 @@ int main(int argc, char** argv)
         // Collision detection for enemyBullet and Player
         counter = 0;
         for(auto iter =  enemyVec[i].enemyBulletsVec.begin(); iter !=  enemyVec[i].enemyBulletsVec.end(); iter++) {
-         //   std::cout << "in" << std::endl;
             if( enemyVec[i].enemyBulletsVec[counter].enemybullet.getGlobalBounds().intersects(
                    playerSprite.getPlayer().getGlobalBounds())) {
-              //  std::cout << "yes" << std::endl;
 
                 spriteLogic.reduceHealth( enemyVec[i].enemyBulletsVec[counter].getDamage());
-                // bulletVec.erase(bulletVec.begin() + counter);
                  enemyVec[i].enemyBulletsVec[counter].enemybullet.setFillColor(Color::Black);
 
                 if( enemyVec[i].enemyBulletsVec[counter].getDamage() > 0) {
@@ -259,7 +256,27 @@ int main(int argc, char** argv)
             }
             counter++;
         }
-        ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////\
+        
+        
+               // Collision detection for enemyBullet and Player
+        counter = 0;
+        for(auto iter =  enemyVec.begin(); iter !=  enemyVec.end(); iter++) {
+            if( enemyVec[i]._enemy.getGlobalBounds().intersects(
+                   playerSprite.getPlayer().getGlobalBounds()) && enemyVec[i].getDamage()> 0) {
+
+                spriteLogic.reduceHealth( enemyVec[i].getDamage());
+                 enemyVec[i].enemyBulletsVec[counter].enemybullet.setFillColor(Color::Black);
+                 enemyVec[i].setDamage(0);
+
+                if( enemyVec[i].enemyBulletsVec[counter].getDamage() > 0) {
+                    cout << "collision" << endl;
+                }
+                 enemyVec[i].enemyBulletsVec[counter].setDamage(0);
+            }
+            counter++;
+        }
+//        ////////////////////////////////////////////////////////////////////////////////////
             
             
 

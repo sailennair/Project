@@ -35,12 +35,11 @@ Enemy::Enemy(RenderWindow& window, int playerXpos, int playerYpos, float theta)
     _xpos = _enemy.getPosition().x;
 
     _ypos = _enemy.getPosition().y;
-    
-    for (auto k = 0; k<3 ; k++){
-        EnemyBullet enemyBullet(getCentreX(), getCentreY() , _theta);
+
+    for(auto k = 0; k < 3; k++) {
+        EnemyBullet enemyBullet(getCentreX(), getCentreY(), _theta);
         enemyBulletsVec.push_back(enemyBullet);
     }
-    
 }
 
 void Enemy::moveIncrement()
@@ -53,9 +52,9 @@ void Enemy::moveIncrement()
     newScale += rectScale;
 
     enemySprite.setTexture(_enemyTexture);
-    
+
     enemySprite.setScale(Vector2f(newScale, newScale));
-    
+
     enemySprite.setPosition(_enemy.getPosition());
     // std::cout << rectScale << std::endl;
     // enemySprite.se
@@ -71,9 +70,8 @@ void Enemy::outOfScreenMovement()
 
 void Enemy::draw(RenderWindow& window)
 {
-    //window.draw(_enemy);
-     window.draw(enemySprite);
-    
+    // window.draw(_enemy);
+    window.draw(enemySprite);
 }
 
 int Enemy::getXPosition()
@@ -102,14 +100,13 @@ void Enemy::centreEntity(float angle)
     _xpos = _enemy.getPosition().x;
 
     _ypos = _enemy.getPosition().y;
-    
+
     enemyBulletsVec.erase(enemyBulletsVec.begin(), enemyBulletsVec.end());
-    
-      for (auto k = 0; k<3 ; k++){
-        EnemyBullet enemyBullet(_xpos, _ypos , _theta);
+
+    for(auto k = 0; k < 3; k++) {
+        EnemyBullet enemyBullet(_xpos, _ypos, _theta);
         enemyBulletsVec.push_back(enemyBullet);
     }
-    
 }
 
 void Enemy::decreaseHealth(int damage)
@@ -153,6 +150,16 @@ float Enemy::getTheta()
     return _theta;
 }
 
-//bool Enemy::shouldFire(){
+// bool Enemy::shouldFire(){
 //    return true;
 //}
+
+int Enemy::getDamage()
+{
+    return _damage;
+}
+
+void Enemy::setDamage(int damage)
+{
+    _damage = damage;
+}
