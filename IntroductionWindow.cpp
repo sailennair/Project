@@ -7,7 +7,7 @@ IntroductionWindow::IntroductionWindow(){
 } 
      
 void IntroductionWindow::createWindow(){ 
-    _window.create(VideoMode(800, 600), "Gyruss-Intro"); 
+    _window.create(VideoMode(1000, 700), "Gyruss-Intro"); 
     _window.setMouseCursorVisible(false); 
     _window.setVerticalSyncEnabled(true); 
  

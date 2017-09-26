@@ -22,8 +22,8 @@ int main(int argc, char** argv)
 
     //    window.setVerticalSyncEnabled(true);
 
-    GameWindow gameWindow(800, 600);
-    FinalWindow windowFinal(800, 600);
+    GameWindow gameWindow(1000, 700);
+    FinalWindow windowFinal(1000, 700);
     IntroductionWindow introWindow;
 
     introWindow.run();
@@ -101,6 +101,7 @@ int main(int argc, char** argv)
 
         if(createEnemyNumber < 10) {
             if(timer % 50 == 0) {
+                
                 Enemy enemy(window, playerSprite.getXpos(), playerSprite.getYpos(), spriteLogic.getTheta());
                 enemyVec.push_back(enemy);
 
@@ -112,7 +113,7 @@ int main(int argc, char** argv)
         // Generatign the Satellites, generating three at once. Need to make them not have a time lifespan , but rather
         // only die when shot. Will use a bool to check this
         if(satelliteVec.size() == 0) {
-            if(timer % 1000 == 0 && timer > 0) {
+            if(timer % 500 == 0 && timer > 0) {
                 for(int w = 0; w < 3; w++) {
                     Satellite satellite(window, playerSprite.getXpos() + 30 * w, playerSprite.getYpos() + 30 * w,
                         spriteLogic.getTheta(), spriteLogic.getRadius());
@@ -322,7 +323,7 @@ int main(int argc, char** argv)
                 satelliteVec[v].draw(window);
                 satelliteVec[v].updateMovement();
 
-                if(timer % 25 == 0) {
+                if(timer % 150 == 0) {
                     EnemyBullet satelliteBullet(
                         satelliteVec[v].getCentreX(), satelliteVec[v].getCentreY(), spriteLogic.getTheta());
                     satelliteBulletVec.push_back(satelliteBullet);
@@ -339,6 +340,26 @@ int main(int argc, char** argv)
         for(auto k = 0; k < satelliteBulletVec.size(); k++) {
             satelliteBulletVec[k].draw(window);
             satelliteBulletVec[k].fire(window);
+            
+             //////////////////////////////////////////////////////////////////////////////////////////////
+
+            // Collision detection for enemyBullet and Player
+            counter = 0;
+            for(auto iter = satelliteBulletVec.begin(); iter != satelliteBulletVec.end(); iter++) {
+                if(satelliteBulletVec[counter].enemybullet.getGlobalBounds().intersects(
+                       playerSprite.getPlayer().getGlobalBounds())) {
+
+                    spriteLogic.reduceHealth(satelliteBulletVec[counter].getDamage());
+                   satelliteBulletVec[counter].enemybullet.setFillColor(Color::Black);
+
+                    if(satelliteBulletVec[counter].getDamage() > 0) {
+                        cout << "collision" << endl;
+                    }
+                    satelliteBulletVec[counter].setDamage(0);
+                }
+                counter++;
+            }
+            ////////////////////////////////////////////////////////////////////////////////////\
 
             if((satelliteBulletVec[k].getXPosition() < 10) ||
                 (satelliteBulletVec[k].getXPosition() > window.getSize().x) ||
@@ -347,6 +368,8 @@ int main(int argc, char** argv)
 
                 satelliteBulletVec.erase(satelliteBulletVec.begin() + k);
             }
+            
+            
         }
 
         for(auto k = 0; k < enemyBulletVec.size(); k++) {

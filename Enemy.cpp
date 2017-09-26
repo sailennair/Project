@@ -13,11 +13,6 @@ Enemy::Enemy(RenderWindow& window, int playerXpos, int playerYpos, float theta)
     }
     _enemyTexture.setSmooth(true);
 
-    // _enemy.setTexture(&_enemyTexture);
-
-    // enemySprite.setTextureRect(sf::IntRect(0,0,15,15));
-
-    // _enemy.setTextureRect(IntRect(0,0,15,15));
     enemySprite.setTexture(_enemyTexture);
 
     _windowCentreX = (window.getSize().x) / 2;
@@ -36,7 +31,7 @@ Enemy::Enemy(RenderWindow& window, int playerXpos, int playerYpos, float theta)
 
     _ypos = _enemy.getPosition().y;
 
-    for(auto k = 0; k < 3; k++) {
+    for(auto k = 0; k < 1; k++) {
         EnemyBullet enemyBullet(getCentreX(), getCentreY(), _theta);
         enemyBulletsVec.push_back(enemyBullet);
     }
@@ -56,8 +51,7 @@ void Enemy::moveIncrement()
     enemySprite.setScale(Vector2f(newScale, newScale));
 
     enemySprite.setPosition(_enemy.getPosition());
-    // std::cout << rectScale << std::endl;
-    // enemySprite.se
+    enemySprite.setTexture(_enemyTexture);
 }
 
 void Enemy::outOfScreenMovement()
@@ -70,7 +64,7 @@ void Enemy::outOfScreenMovement()
 
 void Enemy::draw(RenderWindow& window)
 {
-   //  window.draw(_enemy);
+    //  window.draw(_enemy);
     window.draw(enemySprite);
 }
 
@@ -103,7 +97,7 @@ void Enemy::centreEntity(float angle)
 
     enemyBulletsVec.erase(enemyBulletsVec.begin(), enemyBulletsVec.end());
 
-    for(auto k = 0; k < 3; k++) {
+    for(auto k = 0; k < 1; k++) {
         EnemyBullet enemyBullet(_xpos, _ypos, _theta);
         enemyBulletsVec.push_back(enemyBullet);
     }
